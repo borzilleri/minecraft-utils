@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedList;
+import javax.vecmath.Color3b;
 
 /**
  *
@@ -23,12 +24,12 @@ public class MOTD extends Mod {
 	
 	protected void sendMotd(Player player) {
 		if( 0 == motd.size() ) {
-			player.sendChat("[motd] No Message of the day!", ColorEnum.LightPurple);
+			player.sendChat("[motd] No Message of the day!", Color.LightPurple);
 			return;
 		}
 		
 		for(String line: motd) {
-			player.sendChat("[motd] "+line, ColorEnum.LightPurple);
+			player.sendChat("[motd] "+line, Color.LightPurple);
 		}
 	}
 

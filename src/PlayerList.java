@@ -1,7 +1,4 @@
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-
 /**
  *
  * @author jonathan
@@ -18,18 +15,18 @@ public class PlayerList extends Mod {
 	}
 
 	protected void listPlayers(Player player, boolean includeInvisible) {
-		player.sendChat(
-			buildPlayerListMessage(Server.getVisiblePlayers(),"Online Players: "));
+		player.sendChat(buildPlayerListMessage("Online Players: "));
 	}
 
-	protected MessageBlock[] buildPlayerListMessage(ArrayList players, String label) {
-		ArrayList<MessageBlock> playerList = new ArrayList<MessageBlock>();
+	protected String buildPlayerListMessage(String label) {
+		String playerList = Color.Gray.getFormat() + label;
 
-		playerList.add(new MessageBlock(ColorEnum.Gray, label));
-		for( Player thisPlayer:Server.getVisiblePlayers() ) {
-			playerList.add(new MessageBlock(ColorEnum.LightBlue, thisPlayer.getName()));
+		for( Player thisPlayer:Server.getPlayers() ) {
+			playerList += Color.LightBlue.getFormat() + thisPlayer.getName()
+							+ Color.Gray.getFormat() + ", ";
 		}
-		return playerList.toArray(new MessageBlock[1]);
+
+		return playerList;
 	}
 
 	@Override

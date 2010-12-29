@@ -23,12 +23,12 @@ public class Rules extends Mod {
 
 	protected void sendRules(Player player) {
 		if( 0 == rules.size() ) {
-			player.sendChat("[rules] Don't be a dick.", ColorEnum.Rose);
+			player.sendChat("[rules] Don't be a dick.", Color.Rose);
 			return;
 		}
 
 		for(String line: rules) {
-			player.sendChat("[rules] "+line, ColorEnum.Rose);
+			player.sendChat("[rules] "+line, Color.Rose);
 		}
 	}
 

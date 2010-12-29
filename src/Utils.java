@@ -28,8 +28,9 @@ public class Utils extends Mod {
 		}
 		return false;
 	}
-
+	
 	protected void buildCommands() {
+		/*
 		for(String addon:Server.getActiveAddons()) {
 			String[] mod = addon.split("\\.");
 			String theseCommands = Server.getAddon(addon).getMod().toString();
@@ -42,6 +43,8 @@ public class Utils extends Mod {
 			}
 			commands.put(mod[0], theseCommands);
 		}
+		 * 
+		 */
 	}
 
 	@Override
