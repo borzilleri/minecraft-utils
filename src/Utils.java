@@ -22,7 +22,8 @@ public class Utils extends Mod {
 
 			for(Map.Entry<String,String> modCmds:commands.entrySet() ) {
 				player.sendChat(
-								String.format("%s: %s", modCmds.getKey(), modCmds.getValue()));
+								String.format("%s%s: %s%s", Color.LightGray, modCmds.getKey(),
+								Color.White, modCmds.getValue()));
 			}
 			return true;
 		}
@@ -30,21 +31,11 @@ public class Utils extends Mod {
 	}
 	
 	protected void buildCommands() {
-		/*
-		for(String addon:Server.getActiveAddons()) {
-			String[] mod = addon.split("\\.");
-			String theseCommands = Server.getAddon(addon).getMod().toString();
-
-			if( theseCommands.isEmpty() ) continue;
-
-			if( commands.containsKey(mod[0]) ) {
-				theseCommands = String.format("%s, %s",
-								commands.get(mod[0]), theseCommands);
+		for(Mod mod: Server.mods ) {
+			if( ! mod.toString().isEmpty() ) {
+				commands.put(mod.getClass().getName(), mod.toString());
 			}
-			commands.put(mod[0], theseCommands);
 		}
-		 * 
-		 */
 	}
 
 	@Override

@@ -11,11 +11,6 @@ public class PlayerList extends Mod {
 			listPlayers(player, player.isAdmin());
 			return true;
 		}
-		else if( command.equalsIgnoreCase("!help") ) {
-			player.sendChat(Color.LightGray.getFormat() + this.getClass().getName() + ": " +
-							Color.White.getFormat() + toString() );
-			return true;
-		}
 
 		return false;
 	}
