@@ -8,10 +8,12 @@ import java.util.Map;
  */
 public class Utils extends Mod {
 	public static LinkedHashMap<String,String> commands;
+	public static LinkedHashMap<String,String> commandHistory;
 
 	@Override
 	public void activate() {
 		commands = new LinkedHashMap<String, String>();
+		commandHistory = new LinkedHashMap<String, String>();
 	}
 
 	protected boolean parseCommand(Player player, String[] tokens) {
@@ -53,4 +55,11 @@ public class Utils extends Mod {
 		return parseCommand(player, tokens);
 	}
 
+	@Override
+	public boolean onEntityDamage(DamageType d, Entity attacker, Entity defender, int damage) {
+		if( DamageType.FIRE_TICK == d ) {
+			return true;
+		}
+		return false;
+	}
 }
