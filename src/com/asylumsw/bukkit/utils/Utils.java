@@ -13,7 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author jonathan
  */
 public class Utils extends JavaPlugin {
-
 	public UtilsPlayerListener playerListener = new UtilsPlayerListener(this);
 
 	public Utils(PluginLoader pluginLoader, Server instance, PluginDescriptionFile desc, File plugin, ClassLoader cLoader) {
@@ -25,6 +24,7 @@ public class Utils extends JavaPlugin {
 		// Register our events
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvent(Event.Type.PLAYER_COMMAND, playerListener, Event.Priority.Normal, this);
+		pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Event.Priority.Normal, this);
 
 		PluginDescriptionFile pdfFile = this.getDescription();
 		System.out.println(pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!");

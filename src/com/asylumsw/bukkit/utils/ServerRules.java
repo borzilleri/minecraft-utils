@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedList;
 import org.bukkit.ChatColor;
+import org.bukkit.Player;
 
 /**
  *
@@ -19,7 +20,7 @@ public class ServerRules {
 	protected final static String rulesPrefix = "[rules] ";
 	protected final static String rulesFileName = "rules.txt";
 	protected static LinkedList<String> rules;
-
+	
 	protected static void init() {
 		if (null == rules) {
 			rules = new LinkedList<String>();
@@ -43,21 +44,18 @@ public class ServerRules {
 
 	}
 
-	public static String getRules() {
+	public static void sendRulesTo(Player player) {
 		if (null == rules) init();
 
 		if (0 == rules.size()) {
-			return ChatColor.GRAY + rulesPrefix
-							+ ChatColor.DARK_RED + "Don't be a dick.";
+			player.sendMessage(ChatColor.GRAY + rulesPrefix
+							+ ChatColor.DARK_RED + "Don't be a dick.");
 		}
 
-		String message = "";
 		for (String line : rules) {
-			message += ChatColor.GRAY + rulesPrefix
-							+ ChatColor.DARK_RED + line;
+			player.sendMessage(ChatColor.GRAY + rulesPrefix
+							+ ChatColor.DARK_RED + line);
 		}
-
-		return message;
 	}
 	
 }

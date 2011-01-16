@@ -3,6 +3,7 @@ package com.asylumsw.bukkit.utils;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.Player;
 import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.PlayerEvent;
 
 
 /**
@@ -26,12 +27,18 @@ public class UtilsPlayerListener extends PlayerListener {
 			event.setCancelled(true);
 		}
 		else if( split[0].equalsIgnoreCase("/rules") ) {
-			player.sendMessage(ServerRules.getRules());
+			ServerRules.sendRulesTo(player);
 			event.setCancelled(true);
 		}
 		else if( split[0].equalsIgnoreCase("/motd") ) {
+			MessageOfTheDay.sendMotdTo(player);
 			event.setCancelled(true);
 		}
+	}
+
+	@Override
+	public void onPlayerJoin(PlayerEvent event) {
+		MessageOfTheDay.sendMotdTo(event.getPlayer());
 	}
 
 
