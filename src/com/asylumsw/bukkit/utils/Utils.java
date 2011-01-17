@@ -15,8 +15,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Utils extends JavaPlugin {
 	public UtilsPlayerListener playerListener = new UtilsPlayerListener(this);
 
-	public Utils(PluginLoader pluginLoader, Server instance, PluginDescriptionFile desc, File plugin, ClassLoader cLoader) {
-		super(pluginLoader, instance, desc, plugin, cLoader);
+	public Utils(PluginLoader pluginLoader, Server instance, PluginDescriptionFile desc, File folder, File plugin, ClassLoader cLoader) {
+		super(pluginLoader, instance, desc, folder, plugin, cLoader);
 	}
 
 	@Override

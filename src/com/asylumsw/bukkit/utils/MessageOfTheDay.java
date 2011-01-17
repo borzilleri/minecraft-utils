@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedList;
 import org.bukkit.ChatColor;
-import org.bukkit.Player;
+import org.bukkit.entity.Player;
 
 /**
  *

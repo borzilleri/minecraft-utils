@@ -1,7 +1,7 @@
 package com.asylumsw.bukkit.utils;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Player;
+import org.bukkit.entity.Player;
 import org.bukkit.Server;
 
 /**

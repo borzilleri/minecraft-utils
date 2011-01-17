@@ -1,7 +1,7 @@
 package com.asylumsw.bukkit.utils;
 
 import org.bukkit.event.player.PlayerListener;
-import org.bukkit.Player;
+import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerEvent;
 
