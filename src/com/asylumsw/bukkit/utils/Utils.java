@@ -36,4 +36,6 @@ public class Utils extends JavaPlugin {
 	public void onDisable() {
 		System.out.println("Kits Disabled.");
 	}
+
+	public static void main(String[] args) {}
 }
