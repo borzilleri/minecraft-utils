@@ -1,3 +1,10 @@
 name: Utils
 main: com.asylumsw.bukkit.utils.Utils
 version: 2.0
+commands:
+  who:
+    description: Lists the currently connected players.
+  motd:
+    description: Displays the Server's Message of the Day.
+  rules:
+    description: Displays the Server's rules.

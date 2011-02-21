@@ -2,6 +2,9 @@ package com.asylumsw.bukkit.utils;
 
 import java.io.File;
 import org.bukkit.Server;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginLoader;
@@ -20,7 +23,6 @@ public class Utils extends JavaPlugin {
 	public void onEnable() {
 		// Register our events
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvent(Event.Type.PLAYER_COMMAND, playerListener, Event.Priority.Normal, this);
 		pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Event.Priority.Monitor, this);
 		pm.registerEvent(Event.Type.LEAVES_DECAY, blockListener, Event.Priority.Monitor, this);
 
@@ -34,4 +36,22 @@ public class Utils extends JavaPlugin {
 	}
 
 	public static void main(String[] args) {}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if( cmd.getName().equalsIgnoreCase("who") ) {
+			PlayerList.sendWhoList((Player)sender, getServer());
+			return true;
+		}
+		else if(cmd.getName().equalsIgnoreCase("rules")) {
+			ServerRules.sendRulesTo((Player)sender);
+			return true;
+		}
+		else if( cmd.getName().equalsIgnoreCase("motd") ) {
+			MessageOfTheDay.sendMotdTo((Player)sender);
+			return true;
+		}
+
+		return false;
+	}
 }

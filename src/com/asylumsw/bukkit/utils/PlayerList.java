@@ -10,6 +10,10 @@ import org.bukkit.Server;
  */
 public class PlayerList {
 
+	public static void sendWhoList(Player player, Server server) {
+		player.sendMessage(getPlayerList(server));
+	}
+
 	public static String getPlayerList(Server server) {
 		String list = ChatColor.GRAY + "Online Players: ";
 		
