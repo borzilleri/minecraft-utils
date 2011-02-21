@@ -15,11 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Utils extends JavaPlugin {
 	public UtilsPlayerListener playerListener = new UtilsPlayerListener(this);
 	public UtilsBlockListener blockListener = new UtilsBlockListener(this);
-
-	public Utils(PluginLoader pluginLoader, Server instance, PluginDescriptionFile desc, File folder, File plugin, ClassLoader cLoader) {
-		super(pluginLoader, instance, desc, folder, plugin, cLoader);
-	}
-
+	
 	@Override
 	public void onEnable() {
 		// Register our events
