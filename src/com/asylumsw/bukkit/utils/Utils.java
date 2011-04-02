@@ -1,13 +1,14 @@
 package com.asylumsw.bukkit.utils;
 
-import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,9 +19,24 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Utils extends JavaPlugin {
 	public UtilsPlayerListener playerListener = new UtilsPlayerListener(this);
 	public UtilsBlockListener blockListener = new UtilsBlockListener(this);
+	public static Properties props = new Properties();
+	public static Server server;
+
+	public void loadProperties() {
+		try {
+			props.load(new FileInputStream("utils.properties"));
+			AppleTree.setDropChances(props);
+		}
+		catch( IOException ex ) {
+			System.out.println(ex.getMessage());
+		}
+	}
 	
 	@Override
 	public void onEnable() {
+		server = getServer();
+		loadProperties();
+
 		// Register our events
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Event.Priority.Monitor, this);
@@ -32,7 +48,7 @@ public class Utils extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		System.out.println("Kits Disabled.");
+		System.out.println("Utils Disabled.");
 	}
 
 	public static void main(String[] args) {}
@@ -50,6 +66,17 @@ public class Utils extends JavaPlugin {
 		else if( cmd.getName().equalsIgnoreCase("motd") ) {
 			MessageOfTheDay.sendMotdTo((Player)sender);
 			return true;
+		}
+		else if( cmd.getName().equalsIgnoreCase("props") ) {
+			if( 0 >= args.length ) return false;
+
+			if( args[1].equalsIgnoreCase("refresh") ) {
+				loadProperties();
+				sender.sendMessage("[utils] Properties Reloaded");
+			}
+			else if( args[1].equalsIgnoreCase("report") ) {
+				AppleTree.reportDropChances((Player)sender);
+			}
 		}
 
 		return false;

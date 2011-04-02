@@ -1,8 +1,11 @@
 package com.asylumsw.bukkit.utils;
 
+import java.util.Properties;
 import java.util.Random;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -12,28 +15,48 @@ import org.bukkit.inventory.ItemStack;
  */
 public class AppleTree {
 
-	public final static double APPLE_DROP_CHANCE = 3.00;
-	public final static double GOLDEN_APPLE_DROP_CHANCE = 0.05;
+	protected final static double DEFAULT_APPLE_DROP_CHANCE = 0.50;
+	protected final static double DEFAULT_GOLDEN_APPLE_DROP_CHANCE = 0.005;
+	protected static double APPLE_DROP_CHANCE;
+	protected static double GOLDEN_APPLE_DROP_CHANCE;
 
-	public static void onLeavesDecay(LeavesDecayEvent event) {
-		if (event.isCancelled()) {
-			return;
+	public static void reportDropChances(Player player) {
+		player.sendMessage(ChatColor.GRAY+"Apple Drop Chance: "+String.valueOf(APPLE_DROP_CHANCE));
+		player.sendMessage(ChatColor.GRAY+"Golden Apple Drop Chance: "+String.valueOf(GOLDEN_APPLE_DROP_CHANCE));
+	}
+
+	public static void setDropChances(Properties props) {
+		if( null != props.get("apple.drop") ) {
+			APPLE_DROP_CHANCE = Double.parseDouble(Utils.props.get("apple.drop").toString());
+		}
+		else {
+			APPLE_DROP_CHANCE = DEFAULT_APPLE_DROP_CHANCE;
 		}
 
+		if( null != props.get("apple.golden.drop") ) {
+			GOLDEN_APPLE_DROP_CHANCE = Double.parseDouble(Utils.props.get("apple.golden.drop").toString());
+		}
+		else {
+			GOLDEN_APPLE_DROP_CHANCE = DEFAULT_GOLDEN_APPLE_DROP_CHANCE;
+		}
+	}
+
+	public static void onLeavesDecay(LeavesDecayEvent event) {
+		if (event.isCancelled()) return;
+		
 		Random generator = new Random();
 		double chance = generator.nextDouble() * 100.0;
 		Material itemToSpawn = null;
 
-		if (GOLDEN_APPLE_DROP_CHANCE >= chance) {
+		if( GOLDEN_APPLE_DROP_CHANCE >= chance) {
 			itemToSpawn = Material.GOLDEN_APPLE;
-		} else if (APPLE_DROP_CHANCE+GOLDEN_APPLE_DROP_CHANCE >= chance) {
+		}
+		else if( APPLE_DROP_CHANCE+GOLDEN_APPLE_DROP_CHANCE >= chance) {
 			itemToSpawn = Material.APPLE;
 		}
 
-		if (null == itemToSpawn) {
-			return;
-		}
-
+		if (null == itemToSpawn) return;
+		
 		event.getBlock().getWorld().dropItemNaturally(
 						new Location(event.getBlock().getWorld(),
 						event.getBlock().getX(),

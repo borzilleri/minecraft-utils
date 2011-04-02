@@ -8,3 +8,5 @@ commands:
     description: Displays the Server's Message of the Day.
   rules:
     description: Displays the Server's rules.
+  props:
+    description: Various property functions.
