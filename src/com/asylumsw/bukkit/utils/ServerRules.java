@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedList;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
@@ -44,16 +45,16 @@ public class ServerRules {
 
 	}
 
-	public static void sendRulesTo(Player player) {
+	public static void sendRulesTo(CommandSender sender) {
 		if (null == rules) init();
 
 		if (0 == rules.size()) {
-			player.sendMessage(ChatColor.GRAY + rulesPrefix
+			sender.sendMessage(ChatColor.GRAY + rulesPrefix
 							+ ChatColor.DARK_RED + "Don't be a dick.");
 		}
 
 		for (String line : rules) {
-			player.sendMessage(ChatColor.GRAY + rulesPrefix
+			sender.sendMessage(ChatColor.GRAY + rulesPrefix
 							+ ChatColor.DARK_RED + line);
 		}
 	}

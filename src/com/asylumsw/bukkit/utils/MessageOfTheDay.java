@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedList;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
@@ -44,16 +45,16 @@ public class MessageOfTheDay {
 
 	}
 
-	public static void sendMotdTo(Player player) {
+	public static void sendMotdTo(CommandSender sender) {
 		if (null == motd) init();
 
 		if (0 == motd.size()) {
-			player.sendMessage(ChatColor.GRAY + motdPrefix
+			sender.sendMessage(ChatColor.GRAY + motdPrefix
 							+ ChatColor.DARK_AQUA + "Welcome!");
 		}
 
 		for (String line : motd) {
-			player.sendMessage(ChatColor.GRAY + motdPrefix
+			sender.sendMessage(ChatColor.GRAY + motdPrefix
 							+ ChatColor.DARK_AQUA + line);
 		}
 	}

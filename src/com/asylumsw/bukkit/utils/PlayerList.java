@@ -3,6 +3,7 @@ package com.asylumsw.bukkit.utils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.Server;
+import org.bukkit.command.CommandSender;
 
 /**
  *
@@ -10,8 +11,8 @@ import org.bukkit.Server;
  */
 public class PlayerList {
 
-	public static void sendWhoList(Player player, Server server) {
-		player.sendMessage(getPlayerList(server));
+	public static void sendWhoList(CommandSender sender, Server server) {
+		sender.sendMessage(getPlayerList(server));
 	}
 
 	public static String getPlayerList(Server server) {

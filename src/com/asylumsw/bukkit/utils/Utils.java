@@ -3,6 +3,7 @@ package com.asylumsw.bukkit.utils;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -51,25 +52,28 @@ public class Utils extends JavaPlugin {
 		System.out.println("Utils Disabled.");
 	}
 
-	public static void main(String[] args) {}
-
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if( cmd.getName().equalsIgnoreCase("who") ) {
-			PlayerList.sendWhoList((Player)sender, getServer());
+			PlayerList.sendWhoList(sender, getServer());
 			return true;
 		}
 		else if(cmd.getName().equalsIgnoreCase("rules")) {
-			ServerRules.sendRulesTo((Player)sender);
+			ServerRules.sendRulesTo(sender);
 			return true;
 		}
 		else if( cmd.getName().equalsIgnoreCase("motd") ) {
-			MessageOfTheDay.sendMotdTo((Player)sender);
+			MessageOfTheDay.sendMotdTo(sender);
 			return true;
 		}
 		else if( cmd.getName().equalsIgnoreCase("props") ) {
-			if( 0 >= args.length ) return false;
+			if( !sender.isOp() ) {
+				sender.sendMessage(ChatColor.DARK_GRAY+"[utils] "+
+								ChatColor.RED+"ERROR: Only admins may use this command");
+				return true;
+			}
 
+			if( 0 >= args.length ) return false;
 			if( args[1].equalsIgnoreCase("refresh") ) {
 				loadProperties();
 				sender.sendMessage("[utils] Properties Reloaded");
