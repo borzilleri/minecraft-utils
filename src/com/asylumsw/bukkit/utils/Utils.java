@@ -74,12 +74,12 @@ public class Utils extends JavaPlugin {
 			}
 
 			if( 0 >= args.length ) return false;
-			if( args[1].equalsIgnoreCase("refresh") ) {
+			if( args[0].equalsIgnoreCase("refresh") ) {
 				loadProperties();
 				sender.sendMessage("[utils] Properties Reloaded");
 			}
-			else if( args[1].equalsIgnoreCase("report") ) {
-				AppleTree.reportDropChances((Player)sender);
+			else if( args[0].equalsIgnoreCase("report") ) {
+				AppleTree.reportDropChances(sender);
 			}
 		}
 

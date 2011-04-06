@@ -5,7 +5,7 @@ import java.util.Random;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -20,7 +20,7 @@ public class AppleTree {
 	protected static double APPLE_DROP_CHANCE;
 	protected static double GOLDEN_APPLE_DROP_CHANCE;
 
-	public static void reportDropChances(Player player) {
+	public static void reportDropChances(CommandSender player) {
 		player.sendMessage(ChatColor.GRAY+"Apple Drop Chance: "+String.valueOf(APPLE_DROP_CHANCE));
 		player.sendMessage(ChatColor.GRAY+"Golden Apple Drop Chance: "+String.valueOf(GOLDEN_APPLE_DROP_CHANCE));
 	}
