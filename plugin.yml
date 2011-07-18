@@ -1,6 +1,6 @@
 name: Utils
-main: com.asylumsw.bukkit.utils.Utils
-version: 2.0
+main: io.rampant.bukkit.utils.Utils
+version: 3.0
 commands:
   who:
     description: Lists the currently connected players.
@@ -8,5 +8,7 @@ commands:
     description: Displays the Server's Message of the Day.
   rules:
     description: Displays the Server's rules.
-  props:
-    description: Various property functions.
+  utils:
+    description: Manage Utilities.
+    usage: |
+           /<command> reload - Reload utilities settings.

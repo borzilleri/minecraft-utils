@@ -1,4 +1,4 @@
-package com.asylumsw.bukkit.utils;
+package io.rampant.bukkit.utils;
 
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -16,9 +16,7 @@ public class UtilsPlayerListener extends PlayerListener {
 
 	@Override
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		MessageOfTheDay.sendMotdTo(event.getPlayer());
-		PlayerList.sendWhoList(event.getPlayer(), Utils.server);
+		plugin.sendAnnounceTo(event.getPlayer(), "motd.prefix", "motd.text");
+		plugin.sendPlayerList(event.getPlayer());
 	}
-
-
 }
