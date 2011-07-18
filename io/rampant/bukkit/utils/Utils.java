@@ -100,7 +100,7 @@ public class Utils extends JavaPlugin {
 									+ ChatColor.RED + "ERROR: Only admins may use this command");
 				}
 				loadDefaults();
-				sender.sendMessage(ChatColor.DARK_GRAY + "[utils] Properties Reloaded");
+				sender.sendMessage(ChatColor.DARK_GRAY + "[utils] Configuration reloaded.");
 				return true;
 			}
 			return false;
