@@ -33,6 +33,7 @@ public class Utils extends JavaPlugin {
 
 	public void loadDefaults() {
 		config = getConfiguration();
+		config.load();
 
 		config.getString("who.prefix", DEFAULT_WHO_PREFIX);
 		config.getString("who.color", DEFAULT_WHO_COLOR);
